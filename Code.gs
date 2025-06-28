@@ -166,7 +166,7 @@ function cleanTodaySheet(sheet) {
   
   // Clear all data except headers
   if (data.length > 1) {
-    sheet.getRange(2, 1, data.length - 1, data[0].length).clear();
+    sheet.getRange(2, 1, data.length - 1, data[0].length).clearContent();
   }
   
   // Write reassigned rows first, then normal rows
@@ -263,7 +263,7 @@ function clearCallingResponseColumn(sheet) {
   
   if (data.length > 1) {
     // Clear calling response column for all data rows (excluding header)
-    sheet.getRange(2, callingResponseCol, data.length - 1, 1).clear();
+    sheet.getRange(2, callingResponseCol, data.length - 1, 1).clearContent();
     Logger.log("Successfully cleared calling response column in today's sheet");
   } else {
     Logger.log("No data rows to clear in calling response column");
