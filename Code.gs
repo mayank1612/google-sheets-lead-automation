@@ -472,3 +472,37 @@ This is an automated error notification from your Lead Management System
     }
   }
 }
+
+/**
+ * Web app entry point - can be called from Make.com
+ */
+function doPost(e) {
+  try {
+    const response = {
+      success: true,
+      message: "Daily lead management started",
+      timestamp: new Date().toISOString()
+    };
+    
+    // Run the main function
+    dailyLeadManagement();
+    
+    response.message = "Daily lead management completed successfully";
+    response.status = "completed";
+    
+    return ContentService
+      .createTextOutput(JSON.stringify(response))
+      .setMimeType(ContentService.MimeType.JSON);
+      
+  } catch (error) {
+    const errorResponse = {
+      success: false,
+      error: error.toString(),
+      timestamp: new Date().toISOString()
+    };
+    
+    return ContentService
+      .createTextOutput(JSON.stringify(errorResponse))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
